@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		03FC29A292ACC40490383A1F /* Pods_Plugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2A61DA5A1F2DD4F959604D /* Pods_Plugin.framework */; };
 		20C0B05DCFC8E3958A738AF2 /* Pods_PluginTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6753A823D3815DB436415E3 /* Pods_PluginTests.framework */; };
+		40E8623F291D4B2000BAD1C4 /* CustomMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8623E291D4B2000BAD1C4 /* CustomMapViewController.swift */; };
+		40E86247291D4D5B00BAD1C4 /* UIImage+resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E86244291D4D5B00BAD1C4 /* UIImage+resize.swift */; };
+		40E86248291D4D5B00BAD1C4 /* CALayer+pixelColorAtPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E86245291D4D5B00BAD1C4 /* CALayer+pixelColorAtPoint.swift */; };
+		40E86249291D4D5B00BAD1C4 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E86246291D4D5B00BAD1C4 /* LinkedList.swift */; };
+		40E8624E291D4D9400BAD1C4 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8624A291D4D9400BAD1C4 /* TypeAliases.swift */; };
+		40E8624F291D4D9400BAD1C4 /* ImageURLLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8624B291D4D9400BAD1C4 /* ImageURLLoadable.swift */; };
+		40E86250291D4D9400BAD1C4 /* NativeImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8624C291D4D9400BAD1C4 /* NativeImageCache.swift */; };
+		40E86251291D4D9400BAD1C4 /* SDWebImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E8624D291D4D9400BAD1C4 /* SDWebImageCache.swift */; };
 		50ADFF92201F53D600D50D53 /* Plugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50ADFF88201F53D600D50D53 /* Plugin.framework */; };
 		50ADFF97201F53D600D50D53 /* PluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ADFF96201F53D600D50D53 /* PluginTests.swift */; };
 		50ADFF99201F53D600D50D53 /* Plugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ADFF8B201F53D600D50D53 /* Plugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -38,6 +46,14 @@
 
 /* Begin PBXFileReference section */
 		3B2A61DA5A1F2DD4F959604D /* Pods_Plugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		40E8623E291D4B2000BAD1C4 /* CustomMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMapViewController.swift; sourceTree = "<group>"; };
+		40E86244291D4D5B00BAD1C4 /* UIImage+resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+resize.swift"; path = "Utilities/UIImage+resize.swift"; sourceTree = "<group>"; };
+		40E86245291D4D5B00BAD1C4 /* CALayer+pixelColorAtPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CALayer+pixelColorAtPoint.swift"; path = "Utilities/CALayer+pixelColorAtPoint.swift"; sourceTree = "<group>"; };
+		40E86246291D4D5B00BAD1C4 /* LinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinkedList.swift; path = Utilities/LinkedList.swift; sourceTree = "<group>"; };
+		40E8624A291D4D9400BAD1C4 /* TypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeAliases.swift; path = ImageCache/TypeAliases.swift; sourceTree = "<group>"; };
+		40E8624B291D4D9400BAD1C4 /* ImageURLLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageURLLoadable.swift; path = ImageCache/ImageURLLoadable.swift; sourceTree = "<group>"; };
+		40E8624C291D4D9400BAD1C4 /* NativeImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NativeImageCache.swift; path = ImageCache/NativeImageCache.swift; sourceTree = "<group>"; };
+		40E8624D291D4D9400BAD1C4 /* SDWebImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SDWebImageCache.swift; path = ImageCache/SDWebImageCache.swift; sourceTree = "<group>"; };
 		50ADFF88201F53D600D50D53 /* Plugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Plugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50ADFF8B201F53D600D50D53 /* Plugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
 		50ADFF8C201F53D600D50D53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -108,6 +124,14 @@
 		50ADFF8A201F53D600D50D53 /* Plugin */ = {
 			isa = PBXGroup;
 			children = (
+				40E8624B291D4D9400BAD1C4 /* ImageURLLoadable.swift */,
+				40E8624C291D4D9400BAD1C4 /* NativeImageCache.swift */,
+				40E8624D291D4D9400BAD1C4 /* SDWebImageCache.swift */,
+				40E8624A291D4D9400BAD1C4 /* TypeAliases.swift */,
+				40E86245291D4D5B00BAD1C4 /* CALayer+pixelColorAtPoint.swift */,
+				40E86246291D4D5B00BAD1C4 /* LinkedList.swift */,
+				40E86244291D4D5B00BAD1C4 /* UIImage+resize.swift */,
+				40E8623E291D4B2000BAD1C4 /* CustomMapViewController.swift */,
 				50E1A94720377CB70090CE1A /* Plugin.swift */,
 				50ADFF8B201F53D600D50D53 /* Plugin.h */,
 				FE57559026E111230006B72B /* MapPreferences.swift */,
@@ -350,11 +374,13 @@
 				"${PODS_ROOT}/Target Support Files/Pods-PluginTests/Pods-PluginTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Capacitor/Capacitor.framework",
 				"${BUILT_PRODUCTS_DIR}/CapacitorCordova/Cordova.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Capacitor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cordova.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -368,15 +394,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E8624E291D4D9400BAD1C4 /* TypeAliases.swift in Sources */,
+				40E86248291D4D5B00BAD1C4 /* CALayer+pixelColorAtPoint.swift in Sources */,
 				FE57559126E111230006B72B /* MapPreferences.swift in Sources */,
 				FE5755A126E111A40006B72B /* CustomMapView.swift in Sources */,
+				40E86251291D4D9400BAD1C4 /* SDWebImageCache.swift in Sources */,
 				FE57559E26E111A40006B72B /* MapPreferencesGestures.swift in Sources */,
 				FE57559D26E111A40006B72B /* MapPreferencesAppearance.swift in Sources */,
 				FE57559C26E111A40006B72B /* CustomMapViewEvents.swift in Sources */,
+				40E86250291D4D9400BAD1C4 /* NativeImageCache.swift in Sources */,
 				FE5755A026E111A40006B72B /* MapCameraPosition.swift in Sources */,
 				FE57559A26E111A40006B72B /* BoundingRect.swift in Sources */,
 				FE57559B26E111A40006B72B /* CustomMarker.swift in Sources */,
+				40E8623F291D4B2000BAD1C4 /* CustomMapViewController.swift in Sources */,
+				40E86247291D4D5B00BAD1C4 /* UIImage+resize.swift in Sources */,
+				40E8624F291D4D9400BAD1C4 /* ImageURLLoadable.swift in Sources */,
 				50E1A94820377CB70090CE1A /* Plugin.swift in Sources */,
+				40E86249291D4D5B00BAD1C4 /* LinkedList.swift in Sources */,
 				FE57559F26E111A40006B72B /* MapPreferencesControls.swift in Sources */,
 				50ADFFA82020EE4F00D50D53 /* Plugin.m in Sources */,
 			);

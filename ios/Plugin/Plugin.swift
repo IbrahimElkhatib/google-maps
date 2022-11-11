@@ -292,7 +292,9 @@ public class CapacitorGoogleMaps: CustomMapViewEvents {
 
     @objc func addPolyline(_ call: CAPPluginCall) {
 
-        let points = call.getArray("points", JSObject())
+        let mapId: String = call.getString("mapId", "")
+
+        let points = call.getArray("points")?.capacitor.replacingNullValues() as? [JSObject?]
 
         DispatchQueue.main.async {
 
@@ -301,23 +303,15 @@ public class CapacitorGoogleMaps: CustomMapViewEvents {
                 return
             }
 
-            let path = GMSMutablePath()
-
-            for point in points ?? [] {
-                let coords = CLLocationCoordinate2D(latitude: point["latitude"] as! CLLocationDegrees, longitude: point["longitude"] as! CLLocationDegrees)
-                path.add(coords)
-            }
-
-            let polyline = GMSPolyline(path: path)
-
-            polyline.map = customMapView.GMapView
-            call.resolve()
+            call.reject("feature not implemented")
         }
     }
 
     @objc func addPolygon(_ call: CAPPluginCall) {
 
-        let points = call.getArray("points", JSObject())
+        let mapId: String = call.getString("mapId", "")
+
+        let points = call.getArray("points")?.capacitor.replacingNullValues() as? [JSObject?]
 
         DispatchQueue.main.async {
 
@@ -325,25 +319,14 @@ public class CapacitorGoogleMaps: CustomMapViewEvents {
                 call.reject("map not found")
                 return
             }
-
-            let path = GMSMutablePath()
-
-            for point in points ?? [] {
-                let coords = CLLocationCoordinate2D(
-                    latitude: point["latitude"] as! CLLocationDegrees,
-                    longitude: point["longitude"] as! CLLocationDegrees
-                )
-                path.add(coords)
-            }
-
-            let polygon = GMSPolygon(path: path)
-            polygon.map = customMapView.GMapView
-
-            call.resolve()
+            call.reject("feature not implemented")
         }
     }
 
     @objc func addCircle(_ call: CAPPluginCall) {
+
+        let mapId: String = call.getString("mapId", "")
+
         let radius = call.getDouble("radius") ?? 0.0
 
         let center = call.getObject("center")
@@ -353,6 +336,10 @@ public class CapacitorGoogleMaps: CustomMapViewEvents {
             longitude: center?["longitude"] as! CLLocationDegrees
         )
 
+        let fillColor: String = call.getString("fillColor", "#190078D7")
+        let strokeColor: String = call.getString("strokeColor", "#0078D7")
+        let strokeWidth = CGFloat(call.getFloat("strokeWidth", 1))
+
         DispatchQueue.main.async {
             guard let customMapView = self.customWebView?.customMapViews[mapId] else {
                 call.reject("map not found")
@@ -361,6 +348,9 @@ public class CapacitorGoogleMaps: CustomMapViewEvents {
 
             let circleCenter = coordinates
             let circle = GMSCircle(position: circleCenter, radius: radius)
+            circle.fillColor = UIColor(hexString: fillColor)
+            circle.strokeColor = UIColor(hexString: strokeColor)
+            circle.strokeWidth = strokeWidth
             circle.map = customMapView.GMapView
 
             call.resolve()
@@ -503,5 +493,25 @@ private extension CapacitorGoogleMaps {
 extension CapacitorGoogleMaps: ImageCachable {
     var imageCache: ImageURLLoadable {
         NativeImageCache.shared
+    }
+}
+
+extension UIColor {
+    convenience init(hexString: String) {
+        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int = UInt64()
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (255, 0, 0, 0)
+        }
+        self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
 }

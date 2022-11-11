@@ -3,6 +3,7 @@ package com.hemangkumar.capacitorgooglemaps;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -14,6 +15,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.util.Consumer;
 
 import com.getcapacitor.JSObject;
+import com.getcapacitor.PluginCall;
 import com.google.android.libraries.maps.CameraUpdate;
 import com.google.android.libraries.maps.CameraUpdateFactory;
 import com.google.android.libraries.maps.GoogleMap;
@@ -22,9 +24,13 @@ import com.google.android.libraries.maps.MapView;
 import com.google.android.libraries.maps.OnMapReadyCallback;
 import com.google.android.libraries.maps.UiSettings;
 import com.google.android.libraries.maps.model.CameraPosition;
+import com.google.android.libraries.maps.model.CircleOptions;
 import com.google.android.libraries.maps.model.LatLng;
 import com.google.android.libraries.maps.model.Marker;
 import com.google.android.libraries.maps.model.PointOfInterest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -594,73 +600,33 @@ public class CustomMapView
     }
 
     public void addPolyline(final PluginCall call) {
-        final JSArray points = call.getArray("points", new JSArray());
-
-        getBridge().executeOnMainThread(new Runnable() {
-            @Override
-            public void run() {
-                PolylineOptions polylineOptions = new PolylineOptions();
-
-                for (int i = 0; i < points.length(); i++) {
-                    try {
-                        JSONObject point = points.getJSONObject(i);
-                        LatLng latLng = new LatLng(point.getDouble("latitude"), point.getDouble("longitude"));
-                        polylineOptions.add(latLng);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                googleMap.addPolyline(polylineOptions);
-
-                call.resolve();
-            }
-        });
+        call.reject("feature not implemented");
     }
 
     public void addPolygon(final PluginCall call) {
-        final JSArray points = call.getArray("points", new JSArray());
-
-        getBridge().executeOnMainThread(new Runnable() {
-            @Override
-            public void run() {
-                PolygonOptions polygonOptions = new PolygonOptions();
-
-                for (int i = 0; i < points.length(); i++) {
-                    try {
-                        JSONObject point = points.getJSONObject(i);
-                        LatLng latLng = new LatLng(point.getDouble("latitude"), point.getDouble("longitude"));
-                        polygonOptions.add(latLng);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                googleMap.addPolygon(polygonOptions);
-                call.resolve();
-            }
-        });
+        call.reject("feature not implemented");
     }
 
     public void addCircle(final PluginCall call) {
         final int radius = call.getInt("radius", 0);
         final JSONObject center = call.getObject("center", new JSObject());
+        final String fillColor = call.getString("fillColor");
+        final String strokeColor = call.getString("strokeColor");
+        final float strokeWidth = call.getFloat("strokeWidth");
 
-        getBridge().executeOnMainThread(new Runnable() {
-            @Override
-            public void run() {
-                CircleOptions circleOptions = new CircleOptions();
-                circleOptions.radius(radius);
-                try {
-                    circleOptions.center(new LatLng(center.getDouble("latitude"), center.getDouble("longitude")));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+        CircleOptions circleOptions = new CircleOptions();
+        circleOptions.radius(radius);
+        circleOptions.fillColor(Color.parseColor(fillColor));
+        circleOptions.strokeColor(Color.parseColor(strokeColor));
+        circleOptions.strokeWidth(strokeWidth);
+        try {
+            circleOptions.center(new LatLng(center.getDouble("latitude"), center.getDouble("longitude")));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-                googleMap.addCircle(circleOptions);
+        googleMap.addCircle(circleOptions);
 
-                call.resolve();
-            }
-        });
+        call.resolve();
     }
 }

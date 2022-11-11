@@ -519,6 +519,57 @@ public class CapacitorGoogleMaps extends Plugin implements CustomMapViewEvents {
         }
     }
 
+    @PluginMethod()
+    public void addPolyline(final PluginCall call) {
+        final String mapId = call.getString("mapId");
+        getBridge().getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                CustomMapView customMapView = customMapViews.get(mapId);
+
+                if (customMapView != null) {
+                    customMapView.addPolyline(call);
+                } else {
+                    call.reject("map not found");
+                }
+            }
+        });
+    }
+
+    @PluginMethod()
+    public void addPolygon(final PluginCall call) {
+        final String mapId = call.getString("mapId");
+        getBridge().getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                CustomMapView customMapView = customMapViews.get(mapId);
+
+                if (customMapView != null) {
+                    customMapView.addPolygon(call);
+                } else {
+                    call.reject("map not found");
+                }
+            }
+        });
+    }
+
+    @PluginMethod()
+    public void addCircle(final PluginCall call) {
+        final String mapId = call.getString("mapId");
+        getBridge().getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                CustomMapView customMapView = customMapViews.get(mapId);
+
+                if (customMapView != null) {
+                    customMapView.addCircle(call);
+                } else {
+                    call.reject("map not found");
+                }
+            }
+        });
+    }
+
     @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void removeMarker(final PluginCall call) {
         final String mapId = call.getString("mapId");

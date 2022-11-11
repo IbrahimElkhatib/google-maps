@@ -1,49 +1,61 @@
-import { WebPlugin } from "@capacitor/core";
+import { WebPlugin } from '@capacitor/core';
 
 import {
-  CapacitorGoogleMapsPlugin,
-  CallbackID,
-  InitializeOptions,
-  CreateMapOptions,
-  CreateMapResult,
-  UpdateMapOptions,
-  UpdateMapResult,
-  RemoveMapOptions,
-  ClearMapOptions,
-  MoveCameraOptions,
-  ElementFromPointResultOptions,
   AddMarkerOptions,
   AddMarkerResult,
   AddMarkersOptions,
   AddMarkersResult,
-  RemoveMarkerOptions,
-  DidTapInfoWindowCallback,
-  DidCloseInfoWindowCallback,
-  DidTapMapCallback,
-  DidLongPressMapCallback,
-  DidTapMarkerCallback,
+  CallbackID,
+  CapacitorGoogleMapsPlugin,
+  ClearMapOptions,
+  CreateMapOptions,
+  CreateMapResult,
+  DefaultEventOptions,
+  DefaultEventWithPreventDefaultOptions,
   DidBeginDraggingMarkerCallback,
+  DidBeginMovingCameraCallback,
+  DidCloseInfoWindowCallback,
   DidDragMarkerCallback,
   DidEndDraggingMarkerCallback,
+  DidEndMovingCameraCallback,
+  DidLongPressMapCallback,
+  DidMoveCameraCallback,
+  DidTapInfoWindowCallback,
+  DidTapMapCallback,
+  DidTapMarkerCallback,
   DidTapMyLocationButtonCallback,
   DidTapMyLocationDotCallback,
   DidTapPoiCallback,
-  DidBeginMovingCameraCallback,
-  DidMoveCameraCallback,
-  DidEndMovingCameraCallback,
-  DefaultEventOptions,
-  DefaultEventWithPreventDefaultOptions,
-} from "./definitions";
+  ElementFromPointResultOptions,
+  InitializeOptions,
+  MoveCameraOptions,
+  RemoveMapOptions,
+  RemoveMarkerOptions,
+  UpdateMapOptions,
+  UpdateMapResult,
+} from './definitions';
+import { CircleOptions, PolygonOptions, PolylineOptions } from './interfaces';
 
 export class CapacitorGoogleMapsWeb
-  extends WebPlugin
-  implements CapacitorGoogleMapsPlugin
-{
+    extends WebPlugin
+    implements CapacitorGoogleMapsPlugin {
   constructor() {
     super({
-      name: "CapacitorGoogleMaps",
-      platforms: ["web"],
+      name: 'CapacitorGoogleMaps',
+      platforms: ['web'],
     });
+  }
+
+  async addPolyline(_options: PolylineOptions): Promise<void> {
+    throw new Error('Method not implemented on web.');
+  }
+
+  async addCircle(_options: CircleOptions): Promise<void> {
+    throw new Error('Method not implemented on web.');
+  }
+
+  async addPolygon(_options: PolygonOptions): Promise<void> {
+    throw new Error('Method not implemented on web.');
   }
 
   async initialize(_options: InitializeOptions): Promise<void> {
